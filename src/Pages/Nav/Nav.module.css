@@ -1,0 +1,22 @@
+.navContainer {
+    background-color: #222;
+    color: white;
+    padding: 10px;
+}
+
+.navContainer ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.navContainer ul li {
+    display: inline;
+}
+
+.navContainer a {
+    text-decoration: none;
+    color: white;
+}

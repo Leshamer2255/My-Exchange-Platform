@@ -1,0 +1,42 @@
+.headerContainer {
+  background-color: #FFFFFF;
+  width: 100%;
+  color: #362143;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.headerContainer h1 {
+  margin: 0;
+}
+
+.headerContainer p {
+  color: #362143;
+}
+
+.navContainer {
+  padding: 10px;
+}
+
+.navContainer ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navContainer ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+.navContainer a {
+  text-decoration: none;
+  color: #707070;
+  font-weight: bold;
+}
+
+.navContainer a:hover {
+  color: #362143;
+}
