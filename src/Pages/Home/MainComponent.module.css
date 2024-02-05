@@ -7,3 +7,9 @@
     padding: 20px;
     background-color: #bd0ce9;
 }
+
+.content {
+    flex-grow: 1; 
+    padding: 20px; 
+    background-color: #daf106; 
+}

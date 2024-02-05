@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchBar from '../../Components/SearchBar';
 import SortDropdown from '../../Components/SortDropdown';
 import FilterOptions from '../../Components/FilterOptions';
-import ExchangeList from '../../Components/ExchangeList'; 
+import ExchangeList from '../../Components/ExchangeList';
+import CurrencyRates from '../../Components/CurrencyRates'; 
+import CryptoNews from '../../Components/CryptoNews'; 
 import styles from '../Home/MainComponent.module.css'; 
 import TableComponent from '../../Components/TableComponent';
 import PopularComponent from '../../Components/PopularComponent ';
+import ExchangeMonitor from '../../Components/ExchangeMonitor';
 
 const MainComponent = () => {
     const [exchanges, setExchanges] = useState([
@@ -16,6 +19,36 @@ const MainComponent = () => {
     const [filteredExchanges, setFilteredExchanges] = useState(exchanges);
     const [popularExchanges, setPopularExchanges] = useState([]);
     const [activeSection, setActiveSection] = useState('list');
+    const [currencyRates, setCurrencyRates] = useState([]);
+    const [cryptoNews, setCryptoNews] = useState([]);
+
+    useEffect(() => {
+        
+        fetchCurrencyRates();
+        
+        fetchCryptoNews();
+    }, []);
+
+    const fetchCurrencyRates = () => {
+        fetch('(https://www.coingecko.com/api/documentations/v3')
+            .then(response => response.json())
+            .then(data => {
+                setCurrencyRates(data.rates);
+            })
+            .catch(error => console.error('Error fetching currency rates:', error));
+    };
+
+    const fetchCryptoNews = () => {
+        fetch('https://www.coingecko.com/api/v3/news')
+            .then(response => response.json())
+            .then(data => {
+                console.log('Received news data:', data); // Виведення отриманих даних у консоль
+                setCryptoNews(data.articles);
+            })
+            .catch(error => console.error('Error fetching crypto news:', error)); // Виведення помилки у консоль
+    };
+    
+    
 
     const handleSearch = searchTerm => {
         if (typeof searchTerm === 'string') {
@@ -73,6 +106,11 @@ const MainComponent = () => {
                 </div>
                 {activeComponent}
             </div>
+            <div className={styles.content}>
+            <CurrencyRates rates={currencyRates} />
+                <CryptoNews news={cryptoNews} />
+                <ExchangeMonitor />
+                </div>
         </div>
     );
 };
