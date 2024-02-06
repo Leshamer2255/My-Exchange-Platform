@@ -10,27 +10,32 @@ import TableComponent from '../../Components/TableComponent';
 import PopularComponent from '../../Components/PopularComponent ';
 import ExchangeMonitor from '../../Components/ExchangeMonitor';
 
+
 const MainComponent = () => {
     const [exchanges, setExchanges] = useState([
-        { id: 1, name: 'Exchange A', rate: 1.2, country: 'USA', currency: 'USD' },
-        { id: 2, name: 'Exchange B', rate: 1.5, country: 'EU', currency: 'EUR' },
-        { id: 3, name: 'Exchange C', rate: 1.8, country: 'UK', currency: 'GBP' },
+        { id: 1, name: 'Exchange A', rate: 1.2, country: 'USA', currency: 'USD', rating: 4, commission: 0.5 },
+        { id: 2, name: 'Exchange B', rate: 1.5, country: 'EU', currency: 'EUR', rating: 5, commission: 0.3 },
+        { id: 3, name: 'Exchange C', rate: 1.8, country: 'UK', currency: 'GBP', rating: 3, commission: 0.7 },
     ]);
     const [filteredExchanges, setFilteredExchanges] = useState(exchanges);
     const [popularExchanges, setPopularExchanges] = useState([]);
     const [activeSection, setActiveSection] = useState('list');
     const [currencyRates, setCurrencyRates] = useState([]);
     const [cryptoNews, setCryptoNews] = useState([]);
+    const [recommendations, setRecommendations] = useState([]);
 
     useEffect(() => {
-        
         fetchCurrencyRates();
-        
         fetchCryptoNews();
     }, []);
 
+    useEffect(() => {
+        const recommendations = (filteredExchanges);
+        setRecommendations(recommendations);
+    }, [filteredExchanges]);
+
     const fetchCurrencyRates = () => {
-        fetch('(https://www.coingecko.com/api/documentations/v3')
+        fetch('https://api.exchangeratesapi.io/latest')
             .then(response => response.json())
             .then(data => {
                 setCurrencyRates(data.rates);
@@ -42,13 +47,10 @@ const MainComponent = () => {
         fetch('https://www.coingecko.com/api/v3/news')
             .then(response => response.json())
             .then(data => {
-                console.log('Received news data:', data); // Виведення отриманих даних у консоль
                 setCryptoNews(data.articles);
             })
-            .catch(error => console.error('Error fetching crypto news:', error)); // Виведення помилки у консоль
+            .catch(error => console.error('Error fetching crypto news:', error));
     };
-    
-    
 
     const handleSearch = searchTerm => {
         if (typeof searchTerm === 'string') {
@@ -70,13 +72,23 @@ const MainComponent = () => {
         setFilteredExchanges(sorted);
     };
 
-    const handleFilter = selectedOption => {
-        if (selectedOption === 'all') {
-            setFilteredExchanges(exchanges); 
-        } else {
-            const filtered = exchanges.filter(exchange => exchange.currency === selectedOption);
-            setFilteredExchanges(filtered);
+    const handleFilter = ({ country, currency, rating, commission }) => {
+        let filtered = [...exchanges];
+
+        if (country) {
+            filtered = filtered.filter(exchange => exchange.country.toLowerCase() === country.toLowerCase());
         }
+        if (currency) {
+            filtered = filtered.filter(exchange => exchange.currency.toLowerCase() === currency.toLowerCase());
+        }
+        if (rating) {
+            filtered = filtered.filter(exchange => exchange.rating === parseInt(rating));
+        }
+        if (commission) {
+            filtered = filtered.filter(exchange => exchange.commission === parseFloat(commission));
+        }
+
+        setFilteredExchanges(filtered);
     };
 
     const handleSectionChange = section => {
@@ -96,21 +108,29 @@ const MainComponent = () => {
         <div className={styles.mainContainer}> 
             <div className={styles.sidebar}>
                 <h1>Exchange Platform</h1>
-                <SearchBar handleSearch={handleSearch} />
+                <SearchBar handleSearch={handleSearch} handleFilter={handleFilter} />
                 <SortDropdown handleSort={handleSort} />
                 <FilterOptions handleFilter={handleFilter} />
                 <div className={styles.sectionButtons}>
-                <button onClick={() => handleSectionChange('table')}>Table </button>
+                    <button onClick={() => handleSectionChange('table')}>Table </button>
                     <button onClick={() => handleSectionChange('list')}>List </button>
                     <button onClick={() => handleSectionChange('popular')}>Popular </button>
                 </div>
                 {activeComponent}
             </div>
             <div className={styles.content}>
-            <CurrencyRates rates={currencyRates} />
+                <CurrencyRates rates={currencyRates} />
                 <CryptoNews news={cryptoNews} />
                 <ExchangeMonitor />
+                <div>
+                    <h2>Recommendations</h2>
+                    <ul>
+                        {recommendations.map(recommendation => (
+                            <li key={recommendation.id}>{recommendation.name}</li>
+                        ))}
+                    </ul>
                 </div>
+            </div>
         </div>
     );
 };
