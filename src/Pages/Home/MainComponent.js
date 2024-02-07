@@ -120,8 +120,8 @@ const MainComponent = () => {
             </div>
             <div className={styles.content}>
                 <CurrencyRates rates={currencyRates} />
-                <CryptoNews news={cryptoNews} />
                 <ExchangeMonitor />
+                <CryptoNews news={cryptoNews} />
                 <div>
                     <h2>Recommendations</h2>
                     <ul>
