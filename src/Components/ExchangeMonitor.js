@@ -9,7 +9,7 @@ const ExchangeMonitor = () => {
             <h1>Exchange Monitor</h1>
             <SubscriptionForm />
             <div>
-            Information will be here soon  
+            Information is here rigth now, check the home page  
             </div>
         </div>
     );

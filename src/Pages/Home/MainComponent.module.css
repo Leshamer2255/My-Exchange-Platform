@@ -1,9 +1,10 @@
 .mainContainer {
     display: flex;
+    justify-content: space-between;
 }
 
 .sidebar {
-    width: 200px; 
+    width: 250px; 
     padding: 20px;
     background-color: #bd0ce9;
 }
@@ -12,4 +13,5 @@
     flex-grow: 1; 
     padding: 20px; 
     background-color: #daf106; 
+    text-align: center;
 }

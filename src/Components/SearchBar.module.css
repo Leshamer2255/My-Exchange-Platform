@@ -1,0 +1,30 @@
+.searchBarContainer {
+    margin-bottom: 10px;
+}
+
+.searchBarContainer form,
+.searchBarContainer input,
+.searchBarContainer button {
+    margin-bottom: 20px; 
+}
+
+.searchBarContainer input[type="text"],
+.searchBarContainer input[type="number"] {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.searchBarContainer button {
+    padding: 10px 20px;
+    background-color: #6d0bea;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.searchBarContainer button:hover {
+    background-color: #4b0082;
+}

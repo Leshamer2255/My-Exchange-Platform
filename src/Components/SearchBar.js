@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './SearchBar.module.css'; 
 
 const SearchBar = ({ handleSearch, handleFilter }) => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -14,7 +15,7 @@ const SearchBar = ({ handleSearch, handleFilter }) => {
     };
 
     return (
-        <div>
+        <div className={styles.searchBarContainer}> {/* Додайте класи стилів до контейнера */}
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"

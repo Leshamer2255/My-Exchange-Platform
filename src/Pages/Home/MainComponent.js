@@ -124,11 +124,12 @@ const MainComponent = () => {
                 <CryptoNews news={cryptoNews} />
                 <div>
                     <h2>Recommendations</h2>
-                    <ul>
-                        {recommendations.map(recommendation => (
-                            <li key={recommendation.id}>{recommendation.name}</li>
-                        ))}
-                    </ul>
+                    <ul style={{ listStyleType: 'none', padding: 0 }}>
+    {recommendations.map(recommendation => (
+        <li key={recommendation.id}>{recommendation.name}</li>
+    ))}
+</ul>
+
                 </div>
             </div>
         </div>
