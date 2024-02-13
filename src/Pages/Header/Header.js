@@ -10,9 +10,9 @@ const Header = () => {
       <nav className={styles.navContainer}>
         <ul>
           <li><Link to="/">Home</Link></li>
-          <li><Link to="/pricing">RAZ</Link></li>
-          <li><Link to="/why">DWA</Link></li>
-          <li><Link to="/contact">TRU</Link></li>
+          <li><Link to="/contacts">Contacts</Link></li>
+          <li><Link to="/faq">FAQ</Link></li>
+          <li><Link to="/e">TRU</Link></li>
           <li><Link to="/registration">Registration</Link></li>
         </ul>
       </nav>
