@@ -9,13 +9,26 @@ import FAQ from './Pages/FAQ/FAQ';
 
 
 const App = () => {
+
+  const faqItems = [
+    {
+      question: 'How to register on the platform?',
+      answer: 'To register, go to the "Registration" page and fill in the required fields.'
+    },
+    {
+      question: 'How to contact support?',
+      answer: 'To contact support, use the contact form on the "Contacts" page.'
+    },
+  ];
+
+  
   return (
     <Router>
       <div className="app-container">
         <Header />
         <Routes> 
           <Route path="/contacts" element={<Contacts />} />
-          <Route path="/faq" element={<FAQ />} />
+          <Route path="/faq" element={<FAQ faqItems={faqItems} />} />
           <Route path="/" element={<MainComponent />} />
         </Routes>
         <Footer />
