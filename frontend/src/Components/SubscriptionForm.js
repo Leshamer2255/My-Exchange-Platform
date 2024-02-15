@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from '../Components/SubscriptionForm.module.css'; 
 
 const SubscriptionForm = () => {
     const [email, setEmail] = useState('');
@@ -28,7 +29,7 @@ const SubscriptionForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className={styles.subscriptionForm} onSubmit={handleSubmit}>
             <h2>Subscribe to Notifications</h2>
             <div>
                 <label htmlFor="email">Email:</label>
@@ -40,7 +41,7 @@ const SubscriptionForm = () => {
                     required
                 />
             </div>
-            <div>
+            <div className={styles.checkboxGroup}>
                 <p>Choose notifications:</p>
                 <label>
                     <input
@@ -63,7 +64,7 @@ const SubscriptionForm = () => {
                 </label>
                 <br />
             </div>
-            <button type="submit">Subscribe</button>
+            <button type="submit" className={styles.subscribeButton}>Subscribe</button>
         </form>
     );
 };

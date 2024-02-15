@@ -1,21 +1,35 @@
 import React, { useState } from 'react';
 import styles from './FAQ.module.css';
 
-const FAQ = ({ faqItems }) => {
-  const [expandedQuestion, setExpandedQuestion] = useState(null);
+const FAQ = () => {
+  const [activeIndex, setActiveIndex] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortingCriteria, setSortingCriteria] = useState('default');
 
-  const handleQuestionClick = (index) => {
-    setExpandedQuestion(expandedQuestion === index ? null : index);
+  const faqItems = [
+    {
+      question: 'How to register on the platform?',
+      answer: 'To register, go to the "Registration" page and fill in the required fields.'
+    },
+    {
+      question: 'How to contact support?',
+      answer: 'To contact support, use the contact form on the "Contacts" page.'
+    },
+    {
+      question: 'What payment methods are accepted?',
+      answer: 'We accept payments via credit/debit cards, PayPal, and bank transfers.'
+    },
+    {
+      question: 'Is there a mobile app available?',
+      answer: 'Yes, we have a mobile app available for both iOS and Android devices. You can download it from the App Store or Google Play Store.'
+    }
+  ];
+
+  const toggleAccordion = (index) => {
+    setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
-  };
-
-  const handleSorting = (e) => {
-    setSortingCriteria(e.target.value);
   };
 
   const filteredFaqItems = faqItems.filter(item =>
@@ -23,39 +37,33 @@ const FAQ = ({ faqItems }) => {
     item.answer.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  
-
-  const sortedFaqItems = [...filteredFaqItems].sort((a, b) => {
-    if (sortingCriteria === 'alphabetical') {
-      return a.question.localeCompare(b.question);
-    } else {
-      return a.question.localeCompare(b.question);
-    }
-  });
-
   return (
-    <div className={styles.container}>
-      <h1>FAQ</h1>
-      <div className={styles.controls}>
+    <div className={styles.faqContainer}>
+      <h1 className={styles.title}>FAQ</h1>
+      <div className={styles.search}>
         <input
           type="text"
           placeholder="Search FAQ"
           value={searchTerm}
           onChange={handleSearch}
         />
-        <select value={sortingCriteria} onChange={handleSorting}>
-          <option value="default">Default</option>
-          <option value="alphabetical">Alphabetical</option>
-        </select>
       </div>
-      {sortedFaqItems.map((item, index) => (
-        <div className={styles.faqItem} key={index}>
-          <h2 className={styles.question} onClick={() => handleQuestionClick(index)}>
-            {item.question}
-          </h2>
-          {expandedQuestion === index && <p className={styles.answer}>{item.answer}</p>}
-        </div>
-      ))}
+      <div className={styles.faqList}>
+        {filteredFaqItems.map((item, index) => (
+          <div className={styles.faqItem} key={index}>
+            <div
+              className={`${styles.question} ${activeIndex === index ? styles.active : ''}`}
+              onClick={() => toggleAccordion(index)}
+            >
+              {item.question}
+              <span className={styles.icon}>{activeIndex === index ? '-' : '+'}</span>
+            </div>
+            {activeIndex === index && (
+              <div className={styles.answer}>{item.answer}</div>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

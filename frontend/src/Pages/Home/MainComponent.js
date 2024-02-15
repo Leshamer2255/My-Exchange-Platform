@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from '../../Components/SearchBar';
-import SortDropdown from '../../Components/SortDropdown';
-import FilterOptions from '../../Components/FilterOptions';
-import ExchangeList from '../../Components/ExchangeList';
-import CurrencyRates from '../../Components/CurrencyRates'; 
+import ExchangeList from '../../Components/ExchangeList'; 
 import CryptoNews from '../../Components/CryptoNews'; 
 import styles from '../Home/MainComponent.module.css'; 
 import TableComponent from '../../Components/TableComponent';
@@ -109,8 +106,6 @@ const MainComponent = () => {
             <div className={styles.sidebar}>
                 <h1>Exchange Platform</h1>
                 <SearchBar handleSearch={handleSearch} handleFilter={handleFilter} />
-                <SortDropdown handleSort={handleSort} />
-                <FilterOptions handleFilter={handleFilter} />
                 <div className={styles.sectionButtons}>
                     <button onClick={() => handleSectionChange('table')}>Table </button>
                     <button onClick={() => handleSectionChange('list')}>List </button>
@@ -119,7 +114,6 @@ const MainComponent = () => {
                 {activeComponent}
             </div>
             <div className={styles.content}>
-                <CurrencyRates rates={currencyRates} />
                 <ExchangeMonitor />
                 <CryptoNews news={cryptoNews} />
                 <div>

@@ -15,7 +15,7 @@ const SearchBar = ({ handleSearch, handleFilter }) => {
     };
 
     return (
-        <div className={styles.searchBarContainer}> {/* Додайте класи стилів до контейнера */}
+        <div className={styles.searchBarContainer}> 
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
