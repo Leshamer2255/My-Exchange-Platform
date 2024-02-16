@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from '../../Components/SearchBar';
-import ExchangeList from '../../Components/ExchangeList'; 
-import CryptoNews from '../../Components/CryptoNews'; 
-import styles from '../Home/MainComponent.module.css'; 
+import ExchangeList from '../../Components/ExchangeList';
+import CryptoNews from '../../Components/CryptoNews';
+import styles from '../Home/MainComponent.module.css';
 import TableComponent from '../../Components/TableComponent';
 import PopularComponent from '../../Components/PopularComponent ';
 import ExchangeMonitor from '../../Components/ExchangeMonitor';
@@ -102,7 +102,7 @@ const MainComponent = () => {
     }
 
     return (
-        <div className={styles.mainContainer}> 
+        <div className={styles.mainContainer}>
             <div className={styles.sidebar}>
                 <h1>Exchange Platform</h1>
                 <SearchBar handleSearch={handleSearch} handleFilter={handleFilter} />
@@ -119,10 +119,10 @@ const MainComponent = () => {
                 <div>
                     <h2>Recommendations</h2>
                     <ul style={{ listStyleType: 'none', padding: 0 }}>
-    {recommendations.map(recommendation => (
-        <li key={recommendation.id}>{recommendation.name}</li>
-    ))}
-</ul>
+                        {recommendations.map(recommendation => (
+                            <li key={recommendation.id}>{recommendation.name}</li>
+                        ))}
+                    </ul>
 
                 </div>
             </div>
