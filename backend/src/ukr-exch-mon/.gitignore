@@ -5,6 +5,9 @@
 # Prerequisites
 *.d
 
+#DB files
+*.db
+
 # Object files
 *.o
 *.ko
