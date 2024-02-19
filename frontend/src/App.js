@@ -7,6 +7,7 @@ import MainComponent from './Pages/Home/MainComponent';
 import Contacts from './Pages/Contacts/Contacts';
 import FAQ from './Pages/FAQ/FAQ';
 import RegistrationForm from './Pages/Registration/RegistrationForm';
+import Settings from './Pages/Settings';
 
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/" element={<MainComponent />} />
+          <Route path="/settings" element={<Settings />} />
           <Route path="/registration" element={<RegistrationForm />} />
         </Routes>
         <Footer />
