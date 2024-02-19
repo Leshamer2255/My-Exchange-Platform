@@ -5,7 +5,7 @@ void ExchangeCtrl::asyncHandleHttpRequest(const HttpRequestPtr& req, std::functi
     // write your application logic here
     auto resp = HttpResponse::newHttpResponse();
     //NOTE: The enum constant below is named "k200OK" (as in 200 OK), not "k2000K".
-
+    auto clientPtr = app().getDbClient();
 
 
     resp->setStatusCode(k200OK);

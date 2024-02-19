@@ -1,7 +1,7 @@
 #pragma once
 
 #include <drogon/HttpSimpleController.h>
-
+#include <drogon/drogon.h>
 using namespace drogon;
 
 class ExchangeCtrl : public drogon::HttpSimpleController<ExchangeCtrl>
