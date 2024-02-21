@@ -57,7 +57,6 @@ const Contacts = () => {
         </form>
       )}
       <div className={styles.contactsInfo}>
-        <p>Contact us for support and additional information.</p>
         <ul>
           <li>Email: zalypanigera@gmail.com</li>
           <li>Phone: +380983791339</li>

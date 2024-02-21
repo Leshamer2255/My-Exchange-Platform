@@ -13,7 +13,10 @@ import Settings from './Pages/Settings';
 const App = () => {
 
  
-
+  const handleSaveSettings = (theme) => {
+    // Додайте обробник для збереження налаштувань тут
+    console.log('Theme saved:', theme);
+};
   
   return (
     <Router>
@@ -23,7 +26,7 @@ const App = () => {
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/" element={<MainComponent />} />
-          <Route path="/settings" element={<Settings />} />
+          <Route path="/settings" element={<Settings onSave={handleSaveSettings}/>} />
           <Route path="/registration" element={<RegistrationForm />} />
         </Routes>
         <Footer />

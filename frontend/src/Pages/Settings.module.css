@@ -1,0 +1,43 @@
+.settings {
+    text-align: center;
+    margin: auto;
+    width: 50%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+.settings h2 {
+    margin-bottom: 10px;
+}
+
+.settings div {
+    margin-bottom: 15px;
+}
+
+.settings label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.settings select {
+    width: 50%;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.settings button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.settings button:hover {
+    background-color: #0056b3;
+}

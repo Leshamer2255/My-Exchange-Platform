@@ -8,7 +8,7 @@ const Footer = () => {
         <div><h2>My Exchange Platform</h2>
           <p>THE WAY TO SUCCESS</p></div>
       <hr></hr>
-      <p>@2024 My Exchange Platform ews | Blog | Currency converter | Help center | Russian | Sitemap</p>
+      <p>@2024 My Exchange Platform | News | Blog | Currency converter | Help center | Sitemap</p>
       </div>
     </footer>
   );
