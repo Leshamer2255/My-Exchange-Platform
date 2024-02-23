@@ -1,0 +1,34 @@
+.exchangeList {
+    list-style: none;
+    padding: 0;
+}
+
+.exchangeList h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.exchangeListItem {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.exchangeListItem:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.exchangeListItem div {
+    margin-bottom: 10px;
+}
+
+.exchangeListItem div:first-child {
+    font-weight: bold;
+    color: #6c5ce7;
+}
+

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import SearchBar from '../../Components/SearchBar';
 import ExchangeList from '../../Components/ExchangeList';
 import CryptoNews from '../../Components/CryptoNews';
@@ -6,7 +7,6 @@ import styles from '../Home/MainComponent.module.css';
 import TableComponent from '../../Components/TableComponent';
 import PopularComponent from '../../Components/PopularComponent ';
 import ExchangeMonitor from '../../Components/ExchangeMonitor';
-
 
 const MainComponent = () => {
     const [exchanges, setExchanges] = useState([
@@ -27,8 +27,7 @@ const MainComponent = () => {
     }, []);
 
     useEffect(() => {
-        const recommendations = (filteredExchanges);
-        setRecommendations(recommendations);
+        setRecommendations(filteredExchanges);
     }, [filteredExchanges]);
 
     const fetchCurrencyRates = () => {
@@ -49,14 +48,17 @@ const MainComponent = () => {
             .catch(error => console.error('Error fetching crypto news:', error));
     };
 
-    const handleSearch = searchTerm => {
-        if (typeof searchTerm === 'string') {
-            const filtered = exchanges.filter(exchange =>
-                exchange.name.toLowerCase().includes(searchTerm.toLowerCase())
-            );
-            setFilteredExchanges(filtered);
-        }
-    };
+    const handleSearch = useMemo(
+        () => searchTerm => {
+            if (typeof searchTerm === 'string') {
+                const filtered = exchanges.filter(exchange =>
+                    exchange.name.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+                setFilteredExchanges(filtered);
+            }
+        },
+        [exchanges]
+    );
 
     const handleSort = sortBy => {
         const sorted = [...filteredExchanges].sort((a, b) => {
@@ -103,7 +105,7 @@ const MainComponent = () => {
 
     return (
         <div className={styles.mainContainer}>
-            <div className={styles.sidebar}>
+            <div className={`${styles.sidebar} ${activeSection === 'table' || activeSection === 'list' ? styles.animate : ''}`}>
                 <h1>Exchange Platform</h1>
                 <SearchBar handleSearch={handleSearch} handleFilter={handleFilter} />
                 <div className={styles.sectionButtons}>
@@ -123,11 +125,12 @@ const MainComponent = () => {
                             <li key={recommendation.id}>{recommendation.name}</li>
                         ))}
                     </ul>
-
                 </div>
             </div>
         </div>
     );
 };
+
+MainComponent.propTypes = {};
 
 export default MainComponent;

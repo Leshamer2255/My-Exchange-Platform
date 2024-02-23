@@ -1,8 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './ExchangeList.module.css';
 
 const ExchangeList = ({ exchanges }) => {
+    if (!exchanges || exchanges.length === 0) {
+        return <p>No exchanges found</p>;
+    }
+
     return (
-        <ul>
+        <ul className={styles.exchangeList}>
             <h1>List</h1>
             {exchanges.map(exchange => (
                 <li key={exchange.id}>
@@ -16,20 +22,16 @@ const ExchangeList = ({ exchanges }) => {
     );
 };
 
-fetch('https://api')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok, are you');
-    }
-    return response.json();
-  })
-  .then(data => {
-    
-    console.log(data);
-  })
-  .catch(error => {
-    console.error('There was a problem. Maybe you wanna a problem :', error);
-  });
-
+ExchangeList.propTypes = {
+    exchanges: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            name: PropTypes.string.isRequired,
+            rate: PropTypes.number.isRequired,
+            country: PropTypes.string.isRequired,
+            currency: PropTypes.string.isRequired,
+        })
+    ).isRequired,
+};
 
 export default ExchangeList;

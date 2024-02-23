@@ -1,3 +1,5 @@
+/* MainComponent.module.css */
+
 .mainContainer {
     display: flex;
     justify-content: space-between;
@@ -7,6 +9,33 @@
     width: 250px; 
     padding: 20px;
     background-color: #bd0ce9;
+    color: #fff; 
+    border-radius: 8px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.sectionButtons {
+    margin-top: 20px;
+}
+
+.sectionButtons button {
+    margin-right: 10px;
+    padding: 10px 20px;
+    background-color: #6c5ce7;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sectionButtons button:hover {
+    background-color: #4834d4;
 }
 
 .content {
@@ -14,4 +43,27 @@
     padding: 20px; 
     background-color: #daf106; 
     text-align: center;
+    border-radius: 8px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
+
+.content h2 {
+    margin-bottom: 20px;
+}
+
+.recommendationsList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.recommendationsList li {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.animate {
+    transition: transform 0.3s ease, scale 0.3s ease;
+}
+
+
